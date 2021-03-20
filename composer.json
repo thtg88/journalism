@@ -1,0 +1,60 @@
+{
+    "name": "thtg88/journalism",
+    "type": "library",
+    "description": "A package to send a contact request email.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marco Marassi",
+            "email": "admin@marco-marassi.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Thtg88\\Journalism\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Thtg88\\Journalism\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "brainmaestro/composer-git-hooks": "^2.8",
+        "friendsofphp/php-cs-fixer": "^2.18",
+        "orchestra/testbench": "^6.14",
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "^4.6"
+    },
+    "extra": {
+        "hooks": {
+            "pre-commit": "vendor/bin/php-cs-fixer fix --using-cache=no --diff --dry-run"
+        },
+        "laravel": {
+            "providers": [
+                "Thtg88\\Journalism\\JournalismServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "[[ -d .git ]] && vendor/bin/cghooks add --no-lock || true"
+        ],
+        "post-update-cmd": [
+            "[[ -d .git ]] && vendor/bin/cghooks update || true"
+        ],
+        "ci": [
+            "@check-style",
+            "@stan",
+            "@test --stop-on-failure"
+        ],
+        "check-style": "vendor/bin/php-cs-fixer fix --using-cache=no --diff --dry-run",
+        "fix-style": "vendor/bin/php-cs-fixer fix --using-cache=no",
+        "stan": "vendor/bin/psalm --no-cache",
+        "test": "vendor/bin/phpunit"
+    }
+}

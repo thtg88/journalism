@@ -1,0 +1,31 @@
+name: Journalism CI
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
+    # strategy:
+    #   matrix:
+    #     php-versions: ['7.4', '8.0']
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Configure PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.0 # ${{ matrix.php-versions }}
+
+    - uses: "ramsey/composer-install@v1"
+
+    - name: Run linting
+      run: composer run-script check-style
+
+    - name: Run static analysis
+      run: composer run-script stan
+
+    - name: Run test suite
+      run: composer run-script test -- --stop-on-failure
