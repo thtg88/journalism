@@ -1,7 +1,7 @@
 {
     "name": "thtg88/journalism",
     "type": "library",
-    "description": "A package to send a contact request email.",
+    "description": "Journalism is a Laravel package providing a simple way of log data to your database",
     "license": "MIT",
     "authors": [
         {
