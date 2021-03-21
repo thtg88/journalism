@@ -1,7 +1,7 @@
 {
     "name": "thtg88/journalism",
     "type": "library",
-    "description": "Journalism is a Laravel package providing a simple way of log data to your database",
+    "description": "Journalism is a Laravel package providing a simple way to log data to your database",
     "license": "MIT",
     "authors": [
         {

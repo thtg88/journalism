@@ -1,6 +1,6 @@
 # Journalism
 
-Journalism is a Laravel package providing a simple way of log data to your database.
+Journalism is a Laravel package providing a simple way to log data to your database.
 
 ## Installation
 
