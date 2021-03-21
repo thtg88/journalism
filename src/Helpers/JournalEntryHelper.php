@@ -5,6 +5,7 @@ namespace Thtg88\Journalism\Helpers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Auth;
+use Thtg88\Journalism\Models\JournalEntry;
 
 /**
  * Helper methods to create journal entries.
@@ -29,7 +30,7 @@ class JournalEntryHelper
      * @param \Illuminate\Database\Eloquent\Model|null $model   The model the action is performed on.
      * @param array|null                               $content The action content data.
      *
-     * @return \Thtg88\LaravelBaseClasses\Models\JournalEntry
+     * @return \Thtg88\Journalism\Models\JournalEntry
      */
     public function createJournalEntry(
         string $action,
