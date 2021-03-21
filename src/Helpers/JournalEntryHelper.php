@@ -48,9 +48,12 @@ class JournalEntryHelper
         ];
 
         // Get current authenticated user
+        /** @var \Illuminate\Database\Eloquent\Model $user */
         $user = Auth::user();
         if ($user !== null) {
-            $data['user_id'] = $user->id;
+            $user_key = $user->getKeyName();
+
+            $data['user_id'] = $user->$user_key;
         }
 
         if ($content === null) {
