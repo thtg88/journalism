@@ -19,6 +19,14 @@ final class JournalismServiceProvider extends ServiceProvider
                 'journalism.php'
             ),
         ], 'journalism-config');
+
+        // Migrations
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->publishes([
+            __DIR__.'/../database/migrations' => $this->app->databasePath(
+                'migrations'
+            ),
+        ], 'journalism-migrations');
     }
 
     /**
