@@ -19,7 +19,7 @@ class JournalEntryHelper
      * @return void
      */
     public function __construct(
-        private $auto_register_model_in_morph_map = false
+        private bool $auto_register_model_in_morph_map = false,
     ) {
     }
 
