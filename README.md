@@ -20,6 +20,22 @@ Journalism is particularly useful when tracking changes to models.
 You can therefore apply it to either a generic model observer for every model event (create, update, and destroy) or,
 if you use the repository pattern to all your CRUD methods to track what, when, and by whom certain changes have occurred.
 
+Make sure you register the helper as a singleton in your `AppServiceProvider`:
+
+```php
+
+// app/Providers/AppServiceProvider.php
+
+use Thtg88\Journalism\Helpers\JournalEntryHelper;
+
+public function register(): void
+{
+    $this->app->singleton(JournalEntryHelper::class, static function ($app) {
+        return $app->make(JournalEntryHelper::class);
+    });
+}
+```
+
 ### Using Model Observers
 
 For more documentation on model observer, see the [Laravel docs](https://laravel.com/docs/8.x/eloquent#observers)
@@ -34,6 +50,7 @@ First, create a base model observer:
 namespace App\Observers;
 
 use Illuminate\Database\Eloquent\Model;
+use Thtg88\Journalism\Helpers\JournalEntryHelper;
 use Thtg88\Journalism\Models\JournalEntry;
 
 abstract class Observer
@@ -55,7 +72,7 @@ abstract class Observer
             return;
         }
 
-        app('JournalEntryHelper')->createJournalEntry(
+        app(JournalEntryHelper::class)->createJournalEntry(
             'create',
             $model,
             $model->toArray(),
@@ -79,7 +96,7 @@ abstract class Observer
             return;
         }
 
-        app('JournalEntryHelper')->createJournalEntry(
+        app(JournalEntryHelper::class)->createJournalEntry(
             'update',
             $model,
             $model->toArray(),
@@ -103,7 +120,7 @@ abstract class Observer
             return;
         }
 
-        app('JournalEntryHelper')->createJournalEntry('delete', $model);
+        app(JournalEntryHelper::class)->createJournalEntry('delete', $model);
     }
 
     /**
@@ -123,7 +140,7 @@ abstract class Observer
             return;
         }
 
-        app('JournalEntryHelper')->createJournalEntry('delete', $model);
+        app(JournalEntryHelper::class)->createJournalEntry('delete', $model);
     }
 }
 ```
