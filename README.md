@@ -36,6 +36,14 @@ public function register(): void
 }
 ```
 
+Or you can simply use it in whichever class you prefer:
+
+```php
+use Thtg88\Journalism\Helpers\JournalEntryHelper;
+
+(new JournalEntryHelper())->createJournalEntry('create', $model, ['foo' => 'bar']);
+```
+
 ### Using Model Observers
 
 For more documentation on model observer, see the [Laravel docs](https://laravel.com/docs/8.x/eloquent#observers)
