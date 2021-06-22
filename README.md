@@ -15,6 +15,149 @@ php artisan vendor:publish --provider="Thtg88\Journalism\JournalismServiceProvid
 
 ## Usage
 
+Journalism is particularly useful when tracking changes to models.
+
+You can therefore apply it to either a generic model observer for every model event (create, update, and destroy) or,
+if you use the repository pattern to all your CRUD methods to track what, when, and by whom certain changes have occurred.
+
+### Using Model Observers
+
+For more documentation on model observer, see the [Laravel docs](https://laravel.com/docs/8.x/eloquent#observers)
+
+First, create a base model observer:
+
+```php
+<?php
+
+// app/Observers/Observer.php
+
+namespace App\Observers;
+
+use Illuminate\Database\Eloquent\Model;
+use Thtg88\Journalism\Models\JournalEntry;
+
+abstract class Observer
+{
+    /**
+     * Handle the Model "created" event.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @return void
+     */
+    public function created(Model $model): void
+    {
+        if (config('journalism.enabled') === false) {
+            return;
+        }
+
+        // Create journal entry only if not creating journal entry i.e. infinite recursion
+        if ($model instanceof JournalEntry) {
+            return;
+        }
+
+        app('JournalEntryHelper')->createJournalEntry(
+            'create',
+            $model,
+            $model->toArray(),
+        );
+    }
+
+    /**
+     * Handle the Model "updated" event.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @return void
+     */
+    public function updated(Model $model): void
+    {
+        if (config('journalism.enabled') === false) {
+            return;
+        }
+
+        // Create journal entry only if not creating journal entry i.e. infinite recursion
+        if ($model instanceof JournalEntry) {
+            return;
+        }
+
+        app('JournalEntryHelper')->createJournalEntry(
+            'update',
+            $model,
+            $model->toArray(),
+        );
+    }
+
+    /**
+     * Handle the Model "deleted" event.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @return void
+     */
+    public function deleted(Model $model): void
+    {
+        if (config('journalism.enabled') === false) {
+            return;
+        }
+
+        // Create journal entry only if not creating journal entry i.e. infinite recursion
+        if ($model instanceof JournalEntry) {
+            return;
+        }
+
+        app('JournalEntryHelper')->createJournalEntry('delete', $model);
+    }
+
+    /**
+     * Handle the Model "forceDeleted" event.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @return void
+     */
+    public function forceDeleted(Model $model): void
+    {
+        if (config('journalism.enabled') === false) {
+            return;
+        }
+
+        // Create journal entry only if not creating journal entry i.e. infinite recursion
+        if ($model instanceof JournalEntry) {
+            return;
+        }
+
+        app('JournalEntryHelper')->createJournalEntry('delete', $model);
+    }
+}
+```
+
+Then, create an actual model observer, extending your base one:
+
+```php
+<?php
+
+// app/Observers/UserObserver.php
+
+namespace App\Observers;
+
+class UserObserver extends Observer
+{
+}
+```
+
+Register it in `EventServiceProvider`:
+
+```php
+use App\Models\User;
+use App\Observers\UserObserver;
+
+public function boot()
+{
+    User::observe(UserObserver::class);
+}
+```
+
+Now you can perform a database operation using the user model. A database row should appear in the `journal_entries` table!
+
+### Using the Repository Pattern
+
 **Coming soon!**
 
 ## License
