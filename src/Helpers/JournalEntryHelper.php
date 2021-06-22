@@ -16,6 +16,7 @@ class JournalEntryHelper
      * Create a new helper instance.
      *
      * @param bool $auto_register_model_in_morph_map
+     *
      * @return void
      */
     public function __construct(
