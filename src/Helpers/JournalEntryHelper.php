@@ -29,7 +29,6 @@ class JournalEntryHelper
      * @param string                                   $action  The action performing while creating the entry.
      * @param \Illuminate\Database\Eloquent\Model|null $model   The model the action is performed on.
      * @param array|null                               $content The action content data.
-     *
      * @return \Thtg88\Journalism\Models\JournalEntry
      */
     public function createJournalEntry(
