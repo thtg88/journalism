@@ -16,6 +16,7 @@ class JournalEntryHelper
      * Create a new helper instance.
      *
      * @param bool $auto_register_model_in_morph_map
+     *
      * @return void
      */
     public function __construct(
@@ -29,6 +30,7 @@ class JournalEntryHelper
      * @param string                                   $action  The action performing while creating the entry.
      * @param \Illuminate\Database\Eloquent\Model|null $model   The model the action is performed on.
      * @param array|null                               $content The action content data.
+     *
      * @return \Thtg88\Journalism\Models\JournalEntry
      */
     public function createJournalEntry(
