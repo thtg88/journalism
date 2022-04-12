@@ -25,6 +25,7 @@ class JournalismTest extends TestCase
         ]);
 
         $this->helper = app()->make(JournalEntryHelper::class);
+        /** @var \Thtg88\Journalism\Tests\TestClasses\Models\TestModel */
         $this->model = TestModel::factory()->create();
 
         // This is so that the correct target type can be set on journal entries table
