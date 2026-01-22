@@ -10,10 +10,10 @@ use Thtg88\Journalism\Models\JournalEntry;
 use Thtg88\Journalism\Tests\TestClasses\Factories\UserFactory;
 
 /**
- * @property-read int $id
- * @property string $email
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property-read int                 $id
+ * @property string                   $email
+ * @property \Carbon\Carbon           $created_at
+ * @property \Carbon\Carbon           $updated_at
  * @property array<int, JournalEntry> $journal_entries
  */
 class User extends Authenticatable
