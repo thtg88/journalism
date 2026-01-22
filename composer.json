@@ -11,9 +11,9 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/auth": "^9.0",
-        "illuminate/database": "^9.0",
-        "illuminate/support": "^9.0"
+        "illuminate/auth": "^10.0",
+        "illuminate/database": "^10.0",
+        "illuminate/support": "^10.0"
     },
     "autoload": {
         "psr-4": {
@@ -28,7 +28,7 @@
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^3.0",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "orchestra/testbench": "^7.0",
+        "orchestra/testbench": "^8.0",
         "phpunit/phpunit": "^9.5",
         "vimeo/psalm": "^4.6"
     },
