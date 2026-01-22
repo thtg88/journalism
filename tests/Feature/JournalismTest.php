@@ -3,8 +3,12 @@
 namespace Thtg88\Journalism\Tests\Feature;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 use Thtg88\Journalism\Helpers\JournalEntryHelper;
+use Thtg88\Journalism\JournalismServiceProvider;
 use Thtg88\Journalism\Models\JournalEntry;
 use Thtg88\Journalism\Tests\TestClasses\Models\TestModel;
 use Thtg88\Journalism\Tests\TestClasses\Models\User;
@@ -12,7 +16,7 @@ use Thtg88\Journalism\Tests\TestClasses\Models\User;
 /**
  * @psalm-suppress UnusedClass
  */
-class JournalismTest extends TestCase
+class JournalismTest extends BaseTestCase
 {
     private JournalEntryHelper $helper;
     private TestModel $model;
@@ -21,6 +25,25 @@ class JournalismTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('email')->index();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('test_models', function (Blueprint $table) {
+            $table->id();
+            $table->uuid('uuid');
+            $table->string('secret')->nullable();
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
+            $table->softDeletes();
+            $table->timestamps();
+        });
 
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
@@ -34,6 +57,17 @@ class JournalismTest extends TestCase
 
         // This is so that the correct target type can be set on journal entries table
         Relation::morphMap(['test_models' => TestModel::class]);
+    }
+
+    /**
+     * Load package service provider.
+     *
+     * @param \Illuminate\Foundation\Application $app
+     */
+    #[\Override]
+    protected function getPackageProviders($app)
+    {
+        return [JournalismServiceProvider::class];
     }
 
     /**
