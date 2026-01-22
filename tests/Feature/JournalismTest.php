@@ -34,6 +34,7 @@ class JournalismTest extends TestCase
 
     /**
      * @test
+     *
      * @covers \Thtg88\Journalism\Helpers\JournalEntryHelper::createJournalEntry
      */
     public function action_gets_set_test(): void
@@ -48,6 +49,7 @@ class JournalismTest extends TestCase
 
     /**
      * @test
+     *
      * @covers \Thtg88\Journalism\Helpers\JournalEntryHelper::createJournalEntry
      */
     public function user_id_is_null_if_not_logged_in_test(): void
@@ -63,6 +65,7 @@ class JournalismTest extends TestCase
 
     /**
      * @test
+     *
      * @covers \Thtg88\Journalism\Helpers\JournalEntryHelper::createJournalEntry
      */
     public function content_is_null_if_not_provided(): void
@@ -77,6 +80,7 @@ class JournalismTest extends TestCase
 
     /**
      * @test
+     *
      * @covers \Thtg88\Journalism\Helpers\JournalEntryHelper::createJournalEntry
      */
     public function no_model_does_not_set_target_id_and_target_type_test(): void
@@ -91,6 +95,7 @@ class JournalismTest extends TestCase
 
     /**
      * @test
+     *
      * @covers \Thtg88\Journalism\Helpers\JournalEntryHelper::createJournalEntry
      */
     public function with_model_set_target_id_and_target_type_test(): void
@@ -111,6 +116,7 @@ class JournalismTest extends TestCase
 
     /**
      * @test
+     *
      * @covers \Thtg88\Journalism\Helpers\JournalEntryHelper::createJournalEntry
      */
     public function logged_in_user_gets_set_test(): void
@@ -129,6 +135,7 @@ class JournalismTest extends TestCase
 
     /**
      * @test
+     *
      * @covers \Thtg88\Journalism\Helpers\JournalEntryHelper::createJournalEntry
      */
     public function content_gets_set(): void
@@ -148,6 +155,7 @@ class JournalismTest extends TestCase
 
     /**
      * @test
+     *
      * @covers \Thtg88\Journalism\Helpers\JournalEntryHelper::createJournalEntry
      */
     public function content_does_not_contain_secret_if_model_provided(): void
