@@ -8,6 +8,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Foundation\Auth\User;
 
+/**
+ * @property-read int $id
+ * @property int $target_id
+ * @property string $target_type
+ * @property string $action
+ * @property int $user_id
+ * @property array $content
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property \Illuminate\Foundation\Auth\User $user
+ * @property Model $target
+ */
 class JournalEntry extends Model
 {
     use HasFactory;

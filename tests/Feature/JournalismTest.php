@@ -9,11 +9,15 @@ use Thtg88\Journalism\Models\JournalEntry;
 use Thtg88\Journalism\Tests\TestClasses\Models\TestModel;
 use Thtg88\Journalism\Tests\TestClasses\Models\User;
 
+/**
+ * @psalm-suppress UnusedClass
+ */
 class JournalismTest extends TestCase
 {
     private JournalEntryHelper $helper;
     private TestModel $model;
 
+    #[\Override]
     public function setUp(): void
     {
         parent::setUp();

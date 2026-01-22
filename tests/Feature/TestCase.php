@@ -9,6 +9,7 @@ use Thtg88\Journalism\Tests\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
+    #[\Override]
     public function setUp(): void
     {
         parent::setUp();
@@ -38,6 +39,7 @@ abstract class TestCase extends BaseTestCase
      *
      * @param \Illuminate\Foundation\Application $app
      */
+    #[\Override]
     protected function getPackageProviders($app)
     {
         return [JournalismServiceProvider::class];

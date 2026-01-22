@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Thtg88\Journalism\Tests\TestClasses\Factories\TestModelFactory;
 
+/**
+ * @property-read int $id
+ */
 class TestModel extends Model
 {
     use HasFactory;
