@@ -37,8 +37,6 @@ abstract class TestCase extends BaseTestCase
      * Load package service provider.
      *
      * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
      */
     protected function getPackageProviders($app)
     {
